@@ -67,7 +67,10 @@ Lista de eventos | Datos del evento
 :-------------------------:|:-------------------------:
 ![img_3.png](media/img_3.png)  |  ![img_4.png](media/img_4.png)
 
+
 En caso de querer acceder estos tornados, los enlaces para estos son:
+
+- 
 ## Trabajo futuro
 A pesar de que con esta herramienta se puede obtener la información almacenada en el servidor Fuseki, es posible ampliar su funcionalidad en caso de tener tiempo para trabajar más sobre ella.
 

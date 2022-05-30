@@ -61,3 +61,11 @@ div.input-div{
     display: flex;
     flex-direction: column;
 }
+
+#tornado-hero{
+    width: 720px;
+    border-top-left-radius: 1em;
+}
+.carousel-caption{
+    background-color: rgba(255, 255, 255, 0.9);
+}

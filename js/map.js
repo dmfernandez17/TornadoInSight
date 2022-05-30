@@ -28,7 +28,7 @@ const TORNADOES_WITH_RELATED_QUERY_1 = "prefix sostst: <http://sweetontology.net
     "           :significantEvent ?list ;\n" +
     "           schema:location ?county;\n" +
     "            sostst:EnhancedFujitaScale ?escale .\n" +
-    "} LIMIT 35"
+    "}"
 
 const TORNADOES_WITH_RELATED_QUERY_2 = "prefix sostst: <http://sweetontology.net/stateStorm/>\n" +
     "prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> \n" +
@@ -41,7 +41,7 @@ const TORNADOES_WITH_RELATED_QUERY_2 = "prefix sostst: <http://sweetontology.net
     "           :significantEvent ?list ;\n" +
     "           schema:location ?county;\n" +
     "            sostst:FujitaPearsonScale ?escale .\n" +
-    " } LIMIT 10"
+    " }"
 
 var greenIcon = new L.Icon({
     iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',

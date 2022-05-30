@@ -52,9 +52,9 @@ function search_by_all(){
                             county_map[list_counties_ids] = returnedData.entities[list_counties_ids].labels.en.value
 
                             let title = "<a href='result.html?id=" + tornado.tornado.value.replace("http://www.example.org/rdf#", "")
-                                + "'><h3>"+ county_map[list_counties_ids] +
+                                + "'><h5>"+ county_map[list_counties_ids] +
                                 " Tornado (" + tornado.val.value.replace("http://sweetontology.net/stateStorm/","") + ", " +
-                                iso_to_date(tornado.date.value) + ")</h3></a>"
+                                iso_to_date(tornado.date.value) + ")</h5></a>"
                             $('#search-results').append(title)
                         }, 'json').fail(function (){
                             console.log("Error while accessing wikidata")
