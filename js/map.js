@@ -160,9 +160,14 @@ function get_tornado_and_related(){
                 $.post('http://156.35.98.114:3030/tornados/sparql', {'query': query},
                     function (returnedData){
                         tornadoes = returnedData.results.bindings
+                        console.log(tornadoes)
                         //Crea marcador por cada tornado
                         tornadoes.forEach(tornado => {
+                            //Mover el centro del mapa
+                            map.setView([tornado.lat.value, tornado.long.value], 6)
+
                             L.marker([parseFloat(tornado.lat.value), parseFloat(tornado.long.value)],{icon: greenIcon}).addTo(map);
+                            console.log("aaaaaaaa")
                         })
                     }, 'json').fail(function (){
                     console.log("Error while obtaining all tornadoes data")
