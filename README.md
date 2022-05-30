@@ -87,3 +87,7 @@ Mediante un evento que escuche cuando un marcador sea pulsado o similar, se podr
 
 También se pueden generar marcadores espaciales dependiendo de si un evento se trata de un tornado, granizo o vientos fuertes, por ejemplo.
 
+## Despliegue de la herramienta
+
+El despliegue de TornadoInSight se ha realizado sobre los servidores de la Universidad de Oviedo. Para acceder a ellos, se deberá conectarse a través de la red WiFi de la universidad o mediante una VPN.
+Enlace: http://156.35.98.113/TornadoInSight
