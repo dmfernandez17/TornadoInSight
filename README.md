@@ -1,6 +1,5 @@
 # Ejercicio individual para Rama profesional
 
-# Estructura de la página
 ## Estructura de la herramienta
 El objetivo de esta página es proporcionar una forma de mostrar la información almacenada en el endpoint de SPARQL de Fuseki, el cual se ha desarrollado durante la asignatura. Para ello se utilizan dos formas diferentes de mostrar los tornados y eventos: visualizarlos en un mapa y acceder a la información detallada de los mismo mediante una búsqueda.
 La página cuenta con 4 vistas diferentes:
