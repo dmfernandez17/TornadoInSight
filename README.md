@@ -24,7 +24,7 @@ El mapa interactivo cuenta con 3 opciones:
 - Eliminar los marcadores del mapa
 
   
-Al seleccionar ver todos los tornados en el mapa, se verán todos los tornados considerados como eventos principales (ya sea desde la base de datos NOAA o desde tuits).
+Al seleccionar ver todos los tornados en el mapa, se verán todos los tornados considerados como eventos principales (ya sean los obtenidos desde la base de datos NOAA o desde tuits).
   
 Todos los marcadores se mostrarán a partir de las coordenadas obtenidas del servidor Fuseki.
   
@@ -32,7 +32,7 @@ Todos los marcadores se mostrarán a partir de las coordenadas obtenidas del ser
   
 Para ver los tornados y sus eventos relacionados se deberá seleccionar en primer lugar un tornado.
   
-Debe notarse que el número de tornados que se muestran es mucho menor que los de la opción anterior. Esto se debe a que solo se pueden seleccionar aquellos que tengan eventos asociados, de los cuales hay 5 en el momento de despliegue de la aplicación.
+Debe notarse que el número de tornados que se muestran es mucho menor que los de la opción anterior. Esto se debe a que solo se pueden seleccionar aquellos que tengan eventos asociados, de los cuales hay 5 en el momento del despliegue de la aplicación.
   
 ![img_1.png](media/img_1.png)
   
@@ -50,9 +50,9 @@ Al aplicar el rango de fechas, se buscará comparando los inputs con la fecha de
   
 Al seleccionar un valor de la magnitud del tornado, se realiza una búsqueda con los tornados con esa magnitud concreta. Nótese que los tuits no contienen esta información y, en caso de emplear este filtro solo o acompañado de la fecha, el resultado no contendrá tornados obtenidos de tuits.
   
-Como resultado de la búsqueda se mostrará un listado de tornados. Para obtener los nombres de las localizaciones, se realizan peticiones a la API de wikidata, para obtener las labels de cada entidad. Al hacer clic sobre cualquiera de ellos se redirigirá a la vista de detalles de los mismos.
+Como resultado de la búsqueda se mostrará un listado de tornados. Para obtener los nombres de las localizaciones, se realizan peticiones a la API de wikidata, para obtener los labels de cada entidad. Al hacer clic sobre cualquiera de ellos se redirigirá a la vista de detalles de los mismos.
 ### Detalles de tornados y eventos relacionados
-A través de la búsqueda se puede acceder a las páginas individuales de información de los tornados y eventos. Estas páginas son dinámicas, la información que aparece en ellas se obtiene a partir del parámetro con el que se accede a la página, como se puede ver en la URL:
+A través de la búsqueda se puede acceder a las páginas individuales de información de los tornados y eventos. Estas páginas son dinámicas, la información que aparece en ellas se obtiene a partir del parámetro con el que se accede a ellas, como se puede ver en la URL:
 > TornadoInSight/result.html?id=<EVENT_ID>
 
 Esto permite al usuario guardar los enlaces a las páginas y poder acceder a las mismas con solo introducirlos en la barra de navegación, sin tener que crear páginas individuales para ello.
@@ -67,7 +67,7 @@ Lista de eventos | Datos del evento
 ![img_3.png](media/img_3.png)  |  ![img_4.png](media/img_4.png)
 
 
-En caso de querer acceder estos tornados, los enlaces para estos son:
+En caso de querer acceder estos tornados con eventos asociados, los enlaces para estos son:
 
 - TornadoInSight/result.html?id=TORNADO7805e61343fa
 - TornadoInSight/result.html?id=TORNADO1fa925ba3ffd
@@ -83,6 +83,8 @@ La opción para solucionar esto sería añadir a la localización el estado en e
 
 También se podría añadir información adicional al mapa. La librería permite el uso de popups como se puede ver a continuación.
 
+![img.png](img.png)
+
 Mediante un evento que escuche cuando un marcador sea pulsado o similar, se podría hacer una petición que obtuviera más información del evento concreto o que aporte un enlace a la página de información detallada.
 
 También se pueden generar marcadores espaciales dependiendo de si un evento se trata de un tornado, granizo o vientos fuertes, por ejemplo.
@@ -90,4 +92,5 @@ También se pueden generar marcadores espaciales dependiendo de si un evento se 
 ## Despliegue de la herramienta
 
 El despliegue de TornadoInSight se ha realizado sobre los servidores de la Universidad de Oviedo. Para acceder a ellos, se deberá conectarse a través de la red WiFi de la universidad o mediante una VPN.
+
 Enlace: http://156.35.98.113/TornadoInSight
