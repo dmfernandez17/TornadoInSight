@@ -1,7 +1,7 @@
 # Ejercicio individual para Rama profesional
 
 ## Estructura de la herramienta
-El objetivo de esta página es proporcionar una forma de mostrar la información almacenada en el endpoint de SPARQL de Fuseki, el cual se ha desarrollado durante la asignatura. Para ello se utilizan dos formas diferentes de mostrar los tornados y eventos: visualizarlos en un mapa y acceder a la información detallada de los mismo mediante una búsqueda.
+El objetivo de la página TornadoInSight es proporcionar una forma de mostrar la información almacenada en el endpoint de SPARQL de Fuseki, el cual se ha desarrollado durante la asignatura. Para ello se utilizan dos formas diferentes de mostrar los tornados y eventos: visualizarlos en un mapa y acceder a la información detallada de los mismo mediante una búsqueda.
 La página cuenta con 4 vistas diferentes:
 - Página principal
 - Mapa interactivo
@@ -69,7 +69,11 @@ Lista de eventos | Datos del evento
 
 En caso de querer acceder estos tornados, los enlaces para estos son:
 
-- 
+- TornadoInSight/result.html?id=TORNADO7805e61343fa
+- TornadoInSight/result.html?id=TORNADO1fa925ba3ffd
+- TornadoInSight/result.html?id=TORNADO5ab048ef5f94
+- TornadoInSight/result.html?id=TORNADO7ee22582da60
+- TornadoInSight/result.html?id=TORNADO3be2b77ccfe9
 ## Trabajo futuro
 A pesar de que con esta herramienta se puede obtener la información almacenada en el servidor Fuseki, es posible ampliar su funcionalidad en caso de tener tiempo para trabajar más sobre ella.
 
