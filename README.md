@@ -29,13 +29,13 @@ Al seleccionar ver todos los tornados en el mapa, se verán todos los tornados c
   
 Todos los marcadores se mostrarán a partir de las coordenadas obtenidas del servidor Fuseki.
   
-![img.png](img.png)
+![img.png](media/img.png)
   
 Para ver los tornados y sus eventos relacionados se deberá seleccionar en primer lugar un tornado.
   
 Debe notarse que el número de tornados que se muestran es mucho menor que los de la opción anterior. Esto se debe a que solo se pueden seleccionar aquellos que tengan eventos asociados, de los cuales hay 5 en el momento de despliegue de la aplicación.
   
-![img_1.png](img_1.png)
+![img_1.png](media/img_1.png)
   
 El tornado principal se muestra con un marcador azul, mientras que los eventos relacionados se muestran con marcadores verdes.
   
@@ -60,12 +60,12 @@ Esto permite al usuario guardar los enlaces a las páginas y poder acceder a las
 
 En esta página se muestra información tanto de tornados como de otros tipos de eventos en forma de tabla:
 
-![img_2.png](img_2.png)
+![img_2.png](media/img_2.png)
 
 Además, en caso de ser un tornado con eventos asociados, después de la tabla se muestra un listado con todos los eventos relacionados a los mismos. Al hacer clic sobre ellos se redigirá a cada la página de información específica de cada uno.
 Lista de eventos | Datos del evento
 :-------------------------:|:-------------------------:
-![img_3.png](img_3.png)  |  ![img_4.png](img_4.png)
+![img_3.png](media/img_3.png)  |  ![img_4.png](media/img_4.png)
 
 En caso de querer acceder estos tornados, los enlaces para estos son:
 ## Trabajo futuro

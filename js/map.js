@@ -91,31 +91,26 @@ function init_select(){
                     let tornadoes_2 = returnedData.results.bindings
                     //Juntar todos los tornados
                     let tornadoes = [...new Set([...tornadoes_1, ...tornadoes_2])];
-                    //Obtener los ids de Wikidata de los Counties
-                    let list_counties_ids = []
-                    tornadoes.forEach(tornado => {
-                        list_counties_ids.push(tornado.county.value.replace("http://www.wikidata.org/entity/", ""))
-                    })
-                    const url = wdk.getEntities(list_counties_ids)
-                    //Obtener los nombres de los Counties
-                    $.get(url, {}, function (returnedData){
-                        let county_map = {}
-                        list_counties_ids.forEach(county_id =>{
-                            county_map[county_id] = returnedData.entities[county_id].labels.en.value
-                        })
+
                         //Crear elementos del select
                         tornadoes.forEach(tornado =>{
                             let county_id = tornado.county.value.replace("http://www.wikidata.org/entity/", "")
-                            let select_text = county_map[county_id]+" Tornado ("
-                                + tornado.escale.value.replace("http://sweetontology.net/stateStorm/", "") + ")"
-                            $('#tornado_select')
-                                .append($("<option></option>")
-                                    .attr("value", tornado.Tornado.value.replace("http://www.example.org/rdf#", ""))
-                                    .text(select_text));
+                            const url = wdk.getEntities(county_id)
+                            //Obtener los nombres de los Counties
+                            $.get(url, {}, function (returnedData){
+                                let county_name = returnedData.entities[county_id].labels.en.value
+
+                                let select_text = county_name +" Tornado ("
+                                    + tornado.escale.value.replace("http://sweetontology.net/stateStorm/", "") + ")"
+                                $('#tornado_select')
+                                    .append($("<option></option>")
+                                        .attr("value", tornado.Tornado.value.replace("http://www.example.org/rdf#", ""))
+                                        .text(select_text));
+                                }, 'json').fail(function (){
+                                    console.log("Error while accessing wikidata")
+                            })
                         })
-                    }, 'json').fail(function (){
-                        console.log("Error while accessing wikidata")
-                    })
+
                 }, 'json').fail(function (){
                 console.log("Error while obtaining all tornadoes data")
             })

@@ -141,20 +141,11 @@ function fill_related_events_section(){
             let events = returnedData.results.bindings
             let events_section = $("#related_events")
             events_section.append("<h3>Related events</h3>")
-            //Buscar los nombres de municipios
-            let list_counties_ids = []
-            events.forEach(event => {
-                list_counties_ids.push(event.location.value.replace("http://www.wikidata.org/entity/", ""))
-            })
-            const url = wdk.getEntities(list_counties_ids)
-            $.get(url, {}, function (returnedData){
-                let county_map = {}
-                list_counties_ids.forEach(county_id =>{
-                    county_map[county_id] = returnedData.entities[county_id].labels.en.value
-                })
-                //Crear las entradas de los eventos relacionados
-                events.forEach(event =>{
-                    let county_id = event.location.value.replace("http://www.wikidata.org/entity/", "")
+            events.forEach(event =>{
+                //Obtener nombres de municipios
+                let list_counties_ids = event.location.value.replace("http://www.wikidata.org/entity/", "")
+                const url = wdk.getEntities(list_counties_ids)
+                $.get(url, {}, function (returnedData){
                     let type_event = event.type.value
                     let val_str = ""
                     //Obtener el tipo del eventos (Si no está en uri_2_text, es de la ontología del NOAA)
@@ -165,13 +156,13 @@ function fill_related_events_section(){
                         val_str = type_event.replace("http://stko-kwg.geog.ucsb.edu/lod/ontology/NOAA","")
                             .replace(/([A-Z])/g, " $1")
                     }
-
                     let event_link = "<a href='result.html?id=" + event.event.value.replace("http://www.example.org/rdf#", "")
-                        + "'><p>"+ val_str + " in " + county_map[county_id] + "</p></a>"
+                        + "'><p>"+ val_str + " in " + returnedData.entities[list_counties_ids].labels.en.value + "</p></a>"
                     events_section.append(event_link)
+
+                }, 'json').fail(function (){
+                    console.log("Error while accessing wikidata")
                 })
-            }, 'json').fail(function (){
-                console.log("Error while accessing wikidata")
             })
         }, 'json').fail(function (){
         console.log("Error while obtaining all tornadoes data")
