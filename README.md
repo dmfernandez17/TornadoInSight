@@ -1,7 +1,7 @@
 # Ejercicio individual para Rama profesional
 
 ## Estructura de la herramienta
-El objetivo de la página TornadoInSight es proporcionar una forma de mostrar la información almacenada en el endpoint de SPARQL de Fuseki, el cual se ha desarrollado durante la asignatura. Para ello se utilizan dos formas diferentes de mostrar los tornados y eventos: visualizarlos en un mapa y acceder a la información detallada de los mismo mediante una búsqueda.
+El objetivo de la página TornadoInSight es proporcionar una forma de mostrar la información almacenada en el endpoint de SPARQL de Fuseki, el cual se ha desarrollado durante la asignatura. Para ello se utilizan dos maneras diferentes de mostrar los tornados y eventos: visualizarlos en un mapa y acceder a la información detallada de los mismos mediante una búsqueda.
 La página cuenta con 4 vistas diferentes:
 - Página principal
 - Mapa interactivo
@@ -17,7 +17,7 @@ La búsqueda de tornados permite buscar tornados por fecha y magnitud del mismo.
 A través de la búsqueda se puede acceder a la información del tornado específico.
 ## Funcionamiento de la herramienta
 ### Mapa interactivo
-El mapa se ha realizado mediante la librería leafletjs. Esta librería permite mostrar un mapa en la página y realizar modificaciones de forma programática sobre el mismo, como mover su punto de vista, hacer zoom y añadir marcadores.
+El mapa se ha implementado mediante la librería leafletjs. Esta librería permite mostrar un mapa en la página y realizar modificaciones de forma programática sobre el mismo, como mover su punto de vista, hacer zoom y añadir marcadores.
 El mapa interactivo cuenta con 3 opciones:
 - Ver todos los tornados en el mapa
 - Ver los tornados y sus eventos relacionados en el mapa
@@ -46,13 +46,13 @@ La búsqueda de los tornados permite acceder a la información detallada de los 
 - Ambos
 
   
-Al aplicar el rango de fechas, se buscará comparando los inputs con la fecha de inicio del tornado. El motivo de utilizar la fecha de inicio de los tornados y no la de fin (o ambas) se debe a que los tornados obtenidos de tuits no tienen este ultimo campo. Por tanto, con motivo de obtener más resultados, se filtran los resultados de esta manera.
+Al aplicar el rango de fechas, se buscará comparando los inputs con la fecha de inicio del tornado. El motivo de utilizar la fecha de inicio de los tornados y no la de fin (o ambas) se debe a que los tornados obtenidos de tuits no tienen este último campo. Por tanto, con motivo de obtener más resultados, se filtran los resultados de esta manera.
   
 Al seleccionar un valor de la magnitud del tornado, se realiza una búsqueda con los tornados con esa magnitud concreta. Nótese que los tuits no contienen esta información y, en caso de emplear este filtro solo o acompañado de la fecha, el resultado no contendrá tornados obtenidos de tuits.
   
 Como resultado de la búsqueda se mostrará un listado de tornados. Para obtener los nombres de las localizaciones, se realizan peticiones a la API de wikidata, para obtener las labels de cada entidad. Al hacer clic sobre cualquiera de ellos se redirigirá a la vista de detalles de los mismos.
 ### Detalles de tornados y eventos relacionados
-A través de la búsqueda se puede acceder a las páginas individuales de información de los tornados y eventos. Estas páginas son dinámicas, la información que aparece en ellas se obtiene a partir del parámetro con el se accede a la página, como se puede ver en la URL:
+A través de la búsqueda se puede acceder a las páginas individuales de información de los tornados y eventos. Estas páginas son dinámicas, la información que aparece en ellas se obtiene a partir del parámetro con el que se accede a la página, como se puede ver en la URL:
 > TornadoInSight/result.html?id=<EVENT_ID>
 
 Esto permite al usuario guardar los enlaces a las páginas y poder acceder a las mismas con solo introducirlos en la barra de navegación, sin tener que crear páginas individuales para ello.
@@ -61,7 +61,7 @@ En esta página se muestra información tanto de tornados como de otros tipos de
 
 ![img_2.png](media/img_2.png)
 
-Además, en caso de ser un tornado con eventos asociados, después de la tabla se muestra un listado con todos los eventos relacionados a los mismos. Al hacer clic sobre ellos se redigirá a cada la página de información específica de cada uno.
+Además, en caso de ser un tornado con eventos asociados, después de la tabla se muestra un listado con todos los eventos relacionados con los mismos. Al hacer clic sobre ellos se redigirá a cada la página de información específica de cada uno.
 Lista de eventos | Datos del evento
 :-------------------------:|:-------------------------:
 ![img_3.png](media/img_3.png)  |  ![img_4.png](media/img_4.png)
