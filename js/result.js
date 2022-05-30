@@ -122,7 +122,7 @@ if (tornado_id == null) { //Muestra mensaje de error
     })
 
 }
-//Rellenar
+//Rellenar select
 function fill_related_events_section(){
     query = "prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> \n" +
         "prefix schema: <https://schema.org/>\n" +

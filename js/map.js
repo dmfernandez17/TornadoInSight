@@ -195,6 +195,7 @@ function get_all_tornadoes() {
             tornadoes.forEach(tornado => {
                 L.marker([parseFloat(tornado.lat.value), parseFloat(tornado.long.value)],{}).addTo(map);
             })
+            map.setView([40, -100], 5)
         }, 'json').fail(function (){
         console.log("Error while obtaining all tornadoes data")
     })

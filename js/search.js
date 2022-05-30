@@ -34,7 +34,7 @@ function search_by_all(){
         "  FILTER (regex(xsd:string(?val), \""+ scale_selected + "$\") || \n" +
         "  \t\tregex(xsd:string(?val), \"E"+ scale_selected + "$\"))\n" +
         "    \n" +
-        "}LIMIT 40"
+        "}"
     //Petición post
     $.post('http://156.35.98.114:3030/tornados/sparql', {'query': query},
         function (returnedData) {
@@ -43,28 +43,23 @@ function search_by_all(){
             if (tornadoes.length === 0){ //No hay resultados
                 search_results.append("<h3>No results found</h3>")
             }else{ //Hay resultados
-                //Obtener nombres de municipios
-                let list_counties_ids = []
-                tornadoes.forEach(tornado => {
-                    list_counties_ids.push(tornado.location.value.replace("http://www.wikidata.org/entity/", ""))
-                })
-                const url = wdk.getEntities(list_counties_ids)
-                $.get(url, {}, function (returnedData){
-                    let county_map = {}
-                    list_counties_ids.forEach(county_id =>{
-                        county_map[county_id] = returnedData.entities[county_id].labels.en.value
-                    })
-                    //Mostrar resultados
                     tornadoes.forEach(tornado =>{
-                        let county_id = tornado.location.value.replace("http://www.wikidata.org/entity/", "")
-                        let title = "<a href='result.html?id=" + tornado.tornado.value.replace("http://www.example.org/rdf#", "") + "'><h3>"+ county_map[county_id] +
-                            " Tornado (" + tornado.val.value.replace("http://sweetontology.net/stateStorm/","") + ", " +
-                            iso_to_date(tornado.date.value) + ")</h3></a>"
-                        $('#search-results').append(title)
+                        //Obtener nombres de municipios
+                        let list_counties_ids = tornado.location.value.replace("http://www.wikidata.org/entity/", "")
+                        const url = wdk.getEntities(list_counties_ids)
+                        $.get(url, {}, function (returnedData){
+                            let county_map = {}
+                            county_map[list_counties_ids] = returnedData.entities[list_counties_ids].labels.en.value
+
+                            let title = "<a href='result.html?id=" + tornado.tornado.value.replace("http://www.example.org/rdf#", "")
+                                + "'><h3>"+ county_map[list_counties_ids] +
+                                " Tornado (" + tornado.val.value.replace("http://sweetontology.net/stateStorm/","") + ", " +
+                                iso_to_date(tornado.date.value) + ")</h3></a>"
+                            $('#search-results').append(title)
+                        }, 'json').fail(function (){
+                            console.log("Error while accessing wikidata")
+                        })
                     })
-                }, 'json').fail(function (){
-                    console.log("Error while accessing wikidata")
-                })
             }
         }, 'json').fail(function (){
         console.log("Error while obtaining all tornadoes data")
@@ -93,7 +88,7 @@ function search_by_scale(){
         "  FILTER (regex(xsd:string(?val), \""+ scale_selected + "$\") || \n" +
         "  \t\tregex(xsd:string(?val), \"E"+ scale_selected + "$\"))\n" +
         "    \n" +
-        "}LIMIT 40"
+        "}"
     //Petición post
     $.post('http://156.35.98.114:3030/tornados/sparql', {'query': query},
         function (returnedData) {
@@ -102,27 +97,23 @@ function search_by_scale(){
             if (tornadoes.length === 0){ //No hay resultados
                 search_results.append("<h3>No results found</h3>")
             }else{ //Hay resultados
-                //Obtener nombres de municipios
-                let list_counties_ids = []
-                tornadoes.forEach(tornado => {
-                    list_counties_ids.push(tornado.location.value.replace("http://www.wikidata.org/entity/", ""))
-                })
-                const url = wdk.getEntities(list_counties_ids)
-                $.get(url, {}, function (returnedData){
-                    let county_map = {}
-                    list_counties_ids.forEach(county_id =>{
-                        county_map[county_id] = returnedData.entities[county_id].labels.en.value
-                    })
-                    //Mostrar resultados
-                    tornadoes.forEach(tornado =>{
-                        let county_id = tornado.location.value.replace("http://www.wikidata.org/entity/", "")
-                        let title = "<a href='result.html?id=" + tornado.tornado.value.replace("http://www.example.org/rdf#", "") + "'><h5>"+ county_map[county_id] +
+                tornadoes.forEach(tornado =>{
+                    //Obtener nombres de municipios
+                    let list_counties_ids = tornado.location.value.replace("http://www.wikidata.org/entity/", "")
+                    const url = wdk.getEntities(list_counties_ids)
+                    $.get(url, {}, function (returnedData){
+                        let county_map = {}
+                        county_map[list_counties_ids] = returnedData.entities[list_counties_ids].labels.en.value
+                        let title = "<a href='result.html?id=" + tornado.tornado.value.replace("http://www.example.org/rdf#", "")
+                            + "'><h5>"+ county_map[list_counties_ids] +
                             " Tornado (" + tornado.val.value.replace("http://sweetontology.net/stateStorm/","") + ")</h5></a>"
                         $('#search-results').append(title)
+                    }, 'json').fail(function (){
+                        console.log("Error while accessing wikidata")
                     })
-                }, 'json').fail(function (){
-                    console.log("Error while accessing wikidata")
                 })
+
+
             }
         }, 'json').fail(function (){
         console.log("Error while obtaining all tornadoes data")
@@ -149,7 +140,7 @@ function search_by_date(){
     "  FILTER regex(xsd:string(?tornado), \"TORNADO\") \n" +
     "  FILTER (?date > \"" + start_date + "T00:00:00\"^^xsd:dateTime && \n" +
     "         ?date < \"" + end_date + "T00:00:00\"^^xsd:dateTime)\n" +
-    "} LIMIT 20"
+    "}"
 
     //Petición post
     $.post('http://156.35.98.114:3030/tornados/sparql', {'query': query},
@@ -160,26 +151,21 @@ function search_by_date(){
             if (tornadoes.length === 0){ //No hay resultados
                 search_results.append("<h3>No results found</h3>")
             }else{ //Hay resultados
-                //Obtener nombres de municipios
-                let list_counties_ids = []
-                tornadoes.forEach(tornado => {
-                    list_counties_ids.push(tornado.location.value.replace("http://www.wikidata.org/entity/", ""))
-                })
-                const url = wdk.getEntities(list_counties_ids)
-                $.get(url, {}, function (returnedData){
-                    let county_map = {}
-                    list_counties_ids.forEach(county_id =>{
-                        county_map[county_id] = returnedData.entities[county_id].labels.en.value
-                    })
-                    //Mostrar resultados
-                    tornadoes.forEach(tornado =>{
-                        let county_id = tornado.location.value.replace("http://www.wikidata.org/entity/", "")
-                        let title = "<a href='result.html?id=" + tornado.tornado.value.replace("http://www.example.org/rdf#", "") + "'><h3>"+ county_map[county_id] +
-                            " Tornado (" + iso_to_date(tornado.date.value) + ")</h3></a>"
+                tornadoes.forEach(tornado =>{
+                    //Obtener nombres de municipios
+                    let list_counties_ids = tornado.location.value.replace("http://www.wikidata.org/entity/", "")
+                    const url = wdk.getEntities(list_counties_ids)
+                    $.get(url, {}, function (returnedData){
+                        let county_map = {}
+                        county_map[list_counties_ids] = returnedData.entities[list_counties_ids].labels.en.value
+
+                        let title = "<a href='result.html?id=" + tornado.tornado.value.replace("http://www.example.org/rdf#", "")
+                            + "'><h5>"+ county_map[list_counties_ids] +
+                            " Tornado (" + iso_to_date(tornado.date.value) + ")</h5></a>"
                         $('#search-results').append(title)
+                    }, 'json').fail(function (){
+                        console.log("Error while accessing wikidata")
                     })
-                }, 'json').fail(function (){
-                    console.log("Error while accessing wikidata")
                 })
             }
         }, 'json').fail(function (){
