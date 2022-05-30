@@ -139,8 +139,9 @@ function get_tornado_and_related(){
                 tornadoes = returnedData.results.bindings
                 let main_marker
                 tornadoes.forEach(tornado => {
-                            main_marker =L.marker([parseFloat(tornado.lat.value), parseFloat(tornado.long.value)],{icon: blueIcon}).addTo(map);
-                            })
+                    main_marker =L.marker([parseFloat(tornado.lat.value), parseFloat(tornado.long.value)],{icon: blueIcon}).addTo(map)
+                    map.setView([tornado.lat.value, tornado.long.value], 7)
+                    })
                 query = "prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> \n" +
                     "prefix schema: <https://schema.org/>\n" +
                     "prefix : <http://www.example.org/rdf#> \n" +
@@ -155,11 +156,9 @@ function get_tornado_and_related(){
                 $.post('http://156.35.98.114:3030/tornados/sparql', {'query': query},
                     function (returnedData){
                         tornadoes = returnedData.results.bindings
-                        console.log(tornadoes)
                         //Crea marcador por cada tornado
                         tornadoes.forEach(tornado => {
                             //Mover el centro del mapa
-                            map.setView([tornado.lat.value, tornado.long.value], 6)
 
                             L.marker([parseFloat(tornado.lat.value), parseFloat(tornado.long.value)],{icon: greenIcon}).addTo(map);
                             console.log("aaaaaaaa")
