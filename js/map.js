@@ -137,9 +137,8 @@ function get_tornado_and_related(){
         $.post('http://156.35.98.114:3030/tornados/sparql', {'query': query},
             function (returnedData){
                 tornadoes = returnedData.results.bindings
-                let main_marker
                 tornadoes.forEach(tornado => {
-                    main_marker =L.marker([parseFloat(tornado.lat.value), parseFloat(tornado.long.value)],{icon: blueIcon}).addTo(map)
+                    L.marker([parseFloat(tornado.lat.value), parseFloat(tornado.long.value)],{icon: blueIcon}).addTo(map)
                     map.setView([tornado.lat.value, tornado.long.value], 7)
                     })
                 query = "prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> \n" +
@@ -159,9 +158,8 @@ function get_tornado_and_related(){
                         //Crea marcador por cada tornado
                         tornadoes.forEach(tornado => {
                             //Mover el centro del mapa
-
                             L.marker([parseFloat(tornado.lat.value), parseFloat(tornado.long.value)],{icon: greenIcon}).addTo(map);
-                            console.log("aaaaaaaa")
+
                         })
                     }, 'json').fail(function (){
                     console.log("Error while obtaining all tornadoes data")
@@ -183,6 +181,7 @@ function delete_all_markers() {
 
 //Muestra todos los tornados en el mapa
 function get_all_tornadoes() {
+    delete_all_markers()
     $.post('http://156.35.98.114:3030/tornados/sparql', {'query': ALL_TORNADOES_QUERY},
         function (returnedData){
             tornadoes = returnedData.results.bindings
