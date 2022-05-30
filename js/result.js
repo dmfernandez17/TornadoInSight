@@ -33,6 +33,15 @@ const uri_2_text = {
     "http://www.wikidata.org/entity/Q5107": "Terrestrial",
     "http://sweetontology.net/propSpeed/Speed": "Speed of tornado"
 }
+//Diccionario para convertir URI en unidad de medida
+const uri_2_units = {
+    "https://schema.org/distance": " miles",
+    "https://schema.org/width": " yards",
+    "http://www.example.org/rdf#numberOfCasualties": " deaths",
+    "http://www.example.org/rdf#numberOfInjured": " injured",
+    "http://sweetontology.net/propSpeed/Speed": " miles per hour"
+}
+
 
 //Comprueba si existe el id de tornado
 if (tornado_id == null) { //Muestra mensaje de error
@@ -104,11 +113,25 @@ if (tornado_id == null) { //Muestra mensaje de error
                     }else if (key === "https://schema.org/duration"){
                         row.append($('<td></td>').text(iso_duration(val)))
                         table.append(row)
+                    }else if (key === "http://www.example.org/rdf#costOfDamage"){
+                        //Incluir separadores
+                        row.append($('<td></td>').text(val.replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " $"))
+                        table.append(row)
+                    }else if (key === "http://purl.org/dc/elements/1.1/source"){
+                        row.append($('<td></td>').html("<a href=\"" + val + "\">NOAA Database</a>"))
+                        table.append(row)
                     }else{ //Caso default
                         if (uri_2_text[val] != null){
                             row.append($('<td></td>').text(uri_2_text[val]))
                         }else {
-                            row.append($('<td></td>').text(val))
+                            var units = ""
+                            uri_2_units[key] === undefined ? units = "" : units = uri_2_units[key]
+                            if (val === "1"){//Singular
+                                row.append($('<td></td>').text(val + units.replace("s","")))
+                            }else{ //Plural
+                                row.append($('<td></td>').text(val + units))
+
+                            }
                         }
                         table.append(row)
                     }
